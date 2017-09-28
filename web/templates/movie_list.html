@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+
+  <ul class=entries>
+  {% for movie in movie_list %}
+    <!--<li><a href="{{ url_for('movie_api.show_movie_detail', movie_id=movie.id) }}" target="_blank">{{ movie.name }}</a></li>-->
+    <li><a href="{{ file_url_prefix+movie.url }}" target="_blank">{{ movie.name }}</a></li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em></li>
+  {% endfor %}
+  </ul>
+
+  {% endif %}
+
+{% endblock %}
