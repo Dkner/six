@@ -9,7 +9,7 @@ from sqlalchemy import (
     distinct,
     Boolean
 )
-from . import DBSession, DeclarativeBase
+from . import DBSession, DeclarativeBase, session_scope
 
 
 class MovieModel(DeclarativeBase):
@@ -19,17 +19,20 @@ class MovieModel(DeclarativeBase):
     name = Column(String, default='')
     brief = Column(String, default='')
     url = Column(String, default='')
+    cover = Column(String, default='')
 
     def __init__(self, movie):
         self.name = movie.get('name')
         self.brief = movie.get('brief')
         self.url = movie.get('url')
+        self.cover = movie.get('cover')
 
     @classmethod
     def insert(cls, movie_info):
         movie = MovieModel(movie_info)
-        DBSession().add(movie)
-        DBSession().flush()
+        with session_scope() as session:
+            session.add(movie)
+            session.flush()
         return movie
 
     @classmethod

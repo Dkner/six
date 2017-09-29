@@ -4,8 +4,10 @@
 
   <ul class=entries>
   {% for movie in movie_list %}
-    <!--<li><a href="{{ url_for('movie_api.show_movie_detail', movie_id=movie.id) }}" target="_blank">{{ movie.name }}</a></li>-->
-    <li><a href="{{ file_url_prefix+movie.url }}" target="_blank">{{ movie.name }}</a></li>
+    <div class="movie_brief_div">
+      <img src="{{ file_url_prefix+movie.cover }}">
+      <li><a href="{{ file_url_prefix+movie.url }}" target="_blank">{{ movie.name }}</a></li>
+    </div>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em></li>
   {% endfor %}

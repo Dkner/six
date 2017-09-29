@@ -1,4 +1,3 @@
-import os
 import logging
 from flask import Blueprint, render_template, abort, session, request, flash, url_for, redirect
 from logic.movie import MovieService
